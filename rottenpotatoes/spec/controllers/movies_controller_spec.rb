@@ -10,9 +10,15 @@ describe MoviesController do
     it 'should call the model method that performs search by same director' do
       expect(Movie).to receive(:search_directors).with(99).
         and_return(@fake_results)
-      #Movie.should_receive(:search_directors).with('99').
-      #  and_return(@fake_results)
-      post :search_directors, {id: 99}
+      get :search_directors, {id: 99}
     end
+    
+    it 'should select the Search Directors template for rendering' do
+      # Movie.stub(:search_directors).and_return(@fake_results)
+      allow(Movie).to receive(:search_directors).and_return(@fake_results)
+      get :search_directors, {:id => 99}
+      expect(response).to render_template('search_directors')
+    end
+
   end
 end
