@@ -62,10 +62,9 @@ class MoviesController < ApplicationController
   end
 
   def search_directors
-    Movie.search_directors params[:id].to_i
+    @movies = Movie.search_directors params[:id].to_i
     @all_ratings = Movie.all_ratings
     @selected_ratings = @all_ratings
-    @movies = []
   end
 
 end
