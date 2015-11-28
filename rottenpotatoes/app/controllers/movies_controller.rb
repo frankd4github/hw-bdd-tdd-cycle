@@ -62,9 +62,18 @@ class MoviesController < ApplicationController
   end
 
   def search_directors
-    @movies = Movie.search_directors params[:id].to_i
     @all_ratings = Movie.all_ratings
     @selected_ratings = @all_ratings
+    movie = Movie.find(params[:id])
+    puts "Set movie to movie with id #{params[:id]}"
+    if movie.director.nil?
+      puts "No director"
+      @movies = []
+      flash.alert = "Movie '#{movie.title}' has no director."
+    else
+      @movies = movie.search_directors
+      puts "@movies set to the search results"  
+    end
   end
 
 end
