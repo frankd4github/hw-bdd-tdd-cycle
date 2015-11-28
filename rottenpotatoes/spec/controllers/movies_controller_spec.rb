@@ -34,7 +34,7 @@ describe MoviesController do
       movie99 = instance_double('Movie', id: 99, title: 'The 99', director: nil)
       expect(Movie).to receive(:find).and_return(movie99)
       get :search_by_director, {id: 99}
-      expect(flash[:alert]).not_to be_nil
+      expect(flash[:warning]).not_to be_nil
     end
 
   end
