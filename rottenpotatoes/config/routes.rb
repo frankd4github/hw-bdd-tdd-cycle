@@ -4,5 +4,5 @@ Rottenpotatoes::Application.routes.draw do
   root :to => redirect('/movies')
 
   # map /movie/search_director/:id to 
-  get '/movies/:id/search_directors', to: 'movies#search_directors', as: :search_directors
+  get '/movies/:id/same_director', to: 'movies#search_by_director'
 end
