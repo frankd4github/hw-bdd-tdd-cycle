@@ -61,7 +61,7 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
-  def search_directors
+  def search_by_director
     @movies = Movie.search_directors params[:id].to_i
     @all_ratings = Movie.all_ratings
     @selected_ratings = @all_ratings
