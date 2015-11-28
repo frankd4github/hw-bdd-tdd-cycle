@@ -4,5 +4,6 @@ class Movie < ActiveRecord::Base
   end
 
   def search_by_director
+    Movie.where(director: self.director)
   end
 end
