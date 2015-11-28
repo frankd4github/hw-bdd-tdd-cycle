@@ -62,7 +62,8 @@ class MoviesController < ApplicationController
   end
 
   def search_by_director
-    @movies = Movie.search_directors params[:id].to_i
+    movie = Movie.find params[:id]
+    @movies = movie.search_by_director
     @all_ratings = Movie.all_ratings
     @selected_ratings = @all_ratings
   end
