@@ -63,14 +63,14 @@ class MoviesController < ApplicationController
 
   def search_by_director
     movie = Movie.find params[:id]
-    if movie.director.nil?
-      flash.alert = "Sorry. Director has not been set for this movie"
-      @movies = []
+    if movie.director.nil? or movie.director == ''
+      flash[:warning] = "'#{movie.title}' has no director info"
+      redirect_to movies_path
     else
       @movies = movie.search_by_director
+      @all_ratings = Movie.all_ratings
+      @selected_ratings = @all_ratings
     end
-    @all_ratings = Movie.all_ratings
-    @selected_ratings = @all_ratings
   end
 
 end
